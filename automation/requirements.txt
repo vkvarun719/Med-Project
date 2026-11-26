@@ -1,0 +1,5 @@
+# Requirements for Raspberry Pi Station Daemon
+requests>=2.31.0
+pyserial>=3.5
+# GPIO library for Raspberry Pi (install on Pi OS, optional on Windows/Mac)
+# RPi.GPIO>=0.7.1

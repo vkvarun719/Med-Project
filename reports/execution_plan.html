@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Clinic Patient Measurement System - Execution Plan</title>
+
+<style>
+    @page {
+        size: A4;
+        margin: 14mm 14mm 16mm 14mm;
+    }
+    * {
+        box-sizing: border-box;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: #1e293b;
+        background-color: #ffffff;
+        line-height: 1.5;
+        font-size: 9.5pt;
+        margin: 0;
+        padding: 0;
+    }
+    .header-banner {
+        background: linear-gradient(135deg, #064e3b 0%, #047857 50%, #10b981 100%);
+        color: #ffffff;
+        padding: 22px;
+        border-radius: 8px;
+        margin-bottom: 18px;
+    }
+    .header-banner.blue-theme {
+        background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #38bdf8 100%);
+    }
+    .header-banner h1 {
+        margin: 0 0 6px 0;
+        font-size: 20pt;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+    }
+    .header-banner .subtitle {
+        font-size: 10.5pt;
+        color: #d1fae5;
+        font-weight: 600;
+        margin-bottom: 12px;
+    }
+    .header-banner.blue-theme .subtitle {
+        color: #e0f2fe;
+    }
+    .meta-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        background: rgba(255, 255, 255, 0.15);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 8.5pt;
+    }
+    .meta-item strong {
+        color: #a7f3d0;
+        display: block;
+        text-transform: uppercase;
+        font-size: 7.5pt;
+        letter-spacing: 0.5px;
+    }
+    .header-banner.blue-theme .meta-item strong {
+        color: #bae6fd;
+    }
+    h2 {
+        color: #064e3b;
+        font-size: 13pt;
+        font-weight: 700;
+        border-bottom: 2px solid #e2e8f0;
+        padding-bottom: 5px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        page-break-after: avoid;
+    }
+    .blue-theme-text h2 {
+        color: #1e3a8a;
+    }
+    h3 {
+        color: #0f766e;
+        font-size: 10.5pt;
+        font-weight: 600;
+        margin-top: 14px;
+        margin-bottom: 6px;
+        page-break-after: avoid;
+    }
+    .blue-theme-text h3 {
+        color: #1d4ed8;
+    }
+    p {
+        margin: 0 0 8px 0;
+    }
+    .callout {
+        border-left: 4px solid #059669;
+        background-color: #ecfdf5;
+        padding: 10px 14px;
+        border-radius: 0 6px 6px 0;
+        margin: 12px 0;
+    }
+    .callout.danger {
+        border-left-color: #dc2626;
+        background-color: #fef2f2;
+    }
+    .callout.warning {
+        border-left-color: #d97706;
+        background-color: #fffbeb;
+    }
+    .callout.info {
+        border-left-color: #2563eb;
+        background-color: #eff6ff;
+    }
+    .callout-title {
+        font-weight: 700;
+        font-size: 9pt;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .callout.danger .callout-title { color: #b91c1c; }
+    .callout.warning .callout-title { color: #b45309; }
+    .callout.info .callout-title { color: #1d4ed8; }
+    .callout.default .callout-title { color: #047857; }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 10px 0 14px 0;
+        font-size: 8.5pt;
+    }
+    th, td {
+        padding: 7px 9px;
+        text-align: left;
+        border-bottom: 1px solid #e2e8f0;
+        vertical-align: top;
+    }
+    th {
+        background-color: #f1f5f9;
+        color: #334155;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 7.5pt;
+        letter-spacing: 0.5px;
+    }
+    tr:nth-child(even) td {
+        background-color: #f8fafc;
+    }
+    .badge {
+        display: inline-block;
+        padding: 2px 7px;
+        border-radius: 10px;
+        font-size: 7.5pt;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        white-space: nowrap;
+    }
+    .badge-done { background-color: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; }
+    .badge-partial { background-color: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+    .badge-missing { background-color: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+    .badge-critical { background-color: #7f1d1d; color: #ffffff; }
+
+    .code-box {
+        background-color: #0f172a;
+        color: #e2e8f0;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 7.8pt;
+        padding: 10px 14px;
+        border-radius: 6px;
+        margin: 8px 0;
+        white-space: pre-wrap;
+        word-break: break-all;
+    }
+    .diagram-img {
+        width: 100%;
+        max-height: 340px;
+        object-fit: contain;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        margin: 10px 0;
+        background-color: #000000;
+    }
+    .progress-bar-container {
+        background-color: #e2e8f0;
+        border-radius: 6px;
+        height: 10px;
+        width: 100%;
+        overflow: hidden;
+        margin: 4px 0;
+    }
+    .progress-bar {
+        background-color: #10b981;
+        height: 100%;
+    }
+    .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin: 10px 0;
+    }
+    .metric-card {
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        padding: 12px;
+        background-color: #ffffff;
+    }
+    .metric-card .num {
+        font-size: 18pt;
+        font-weight: 800;
+        color: #0f766e;
+    }
+    .metric-card .label {
+        font-size: 8pt;
+        text-transform: uppercase;
+        color: #64748b;
+        font-weight: 600;
+    }
+    .page-break {
+        page-break-before: always;
+    }
+    ul, ol {
+        margin: 4px 0 8px 18px;
+        padding: 0;
+    }
+    li {
+        margin-bottom: 4px;
+    }
+    .footer-note {
+        margin-top: 18px;
+        padding-top: 8px;
+        border-top: 1px solid #e2e8f0;
+        font-size: 7.5pt;
+        color: #94a3b8;
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+
+</head>
+<body class="blue-theme-text">
+
+<div class="header-banner blue-theme">
+    <h1>Clinic Patient Measurement System</h1>
+    <div class="subtitle">ENGINEERING EXECUTION PLAN & IMPLEMENTATION ROADMAP (DELIVERABLE 2)</div>
+    <div class="meta-grid">
+        <div class="meta-item"><strong>Target Architecture</strong> 3-Tier IoT / Cloud</div>
+        <div class="meta-item"><strong>Deployment</strong> AWS EC2 + Docker</div>
+        <div class="meta-item"><strong>Database</strong> Neon PostgreSQL</div>
+        <div class="meta-item"><strong>Edge Client</strong> Raspberry Pi 4 (Python)</div>
+    </div>
+</div>
+
+<h2>1. Target Architecture & Project Structure</h2>
+<p>
+To resolve the senior's architectural confusion, the repository will be structured cleanly into three independent, decoupled modules:
+</p>
+
+<div class="code-box">clinic-system/
+|-- backend/                   # FastAPI Backend (Runs in Docker on EC2)
+|   |-- app/
+|   |   |-- main.py            # FastAPI Application entrypoint & routes
+|   |   |-- config.py          # Pydantic Settings (.env loader)
+|   |   |-- database.py        # SQLAlchemy engine & Neon session manager
+|   |   |-- models.py          # Patient and Measurement DB models
+|   |   |-- schemas.py         # Request/Response Pydantic schemas (Validation)
+|   |   |-- crud.py            # Database query operations
+|   |   |-- auth.py            # X-API-Key security header dependency
+|   |   `-- barcode_utils.py   # Barcode generator with collision checking
+|   |-- requirements.txt
+|   |-- Dockerfile
+|   `-- .env.example
+|-- automation/                # Raspberry Pi Clinic Station Client (Runs on Pi)
+|   |-- sensors/
+|   |   |-- __init__.py
+|   |   |-- weight.py          # HX711 Load Cell driver + Calibration + Mock
+|   |   `-- height.py          # HC-SR04 Ultrasonic driver + Calibration + Mock
+|   |-- scanner.py             # USB HID / Serial Barcode Scanner driver
+|   |-- stability.py           # Configurable rolling-window stability filter
+|   |-- api_client.py          # HTTP client with retry backoff & SQLite queue
+|   |-- session.py             # State machine (IDLE -> SCANNED -> MEASURING -> STABLE -> SENT)
+|   |-- main.py                # Station CLI daemon entrypoint (Supports --mock)
+|   |-- config.json            # Hardware pins, offsets & stability parameters
+|   |-- clinic-station.service # Systemd service unit for autostart on boot
+|   |-- requirements.txt       # Embedded libraries (RPi.GPIO, hx711, requests)
+|   `-- .env.example
+|-- frontend/                  # React Single Page App (Runs in Docker on EC2)
+|   |-- src/
+|   |   |-- components/        # Registration, BarcodeCard, LiveFeed, HistoryTable, Charts
+|   |   |-- App.js             # Main Dashboard container
+|   |   |-- App.css            # Medical UI styling & Print styles
+|   |   `-- api.js             # Axios client with env baseUrl
+|   |-- Dockerfile
+|   |-- nginx.conf
+|   `-- .env.example
+`-- docker-compose.yml         # Multi-container EC2 orchestration (Frontend + Backend)</div>
+
+<div class="page-break"></div>
+
+<h2>2. Phase-by-Phase Implementation Roadmap</h2>
+
+<h3>Phase 1: Backend Clean Architecture & Neon Database</h3>
+<div class="callout default">
+    <div class="callout-title">Phase 1 Objectives & Deliverables</div>
+    Refactor senior's backend code out of <code>automation/</code> into <code>/clinic-system/backend</code>. Secure all credentials via <code>.env</code>, implement Pydantic v2 validation, and support height & BMI calculations.
+</div>
+<ul>
+    <li><strong>Database Migration:</strong> Create target tables in Neon PostgreSQL:
+        <ul>
+            <li><code>patients</code> (id, name, age, gender, phone, barcode UNIQUE, created_at)</li>
+            <li><code>measurements</code> (id, patient_id FK, weight, height, bmi, timestamp)</li>
+        </ul>
+    </li>
+    <li><strong>BMI Formula Implementation:</strong>
+        <p style="font-family:monospace; background:#f1f5f9; padding:4px 8px; border-radius:4px; display:inline-block;">
+            height_m = height_cm / 100.0; bmi = round(weight_kg / (height_m ** 2), 2)
+        </p>
+    </li>
+    <li><strong>Validation Rules:</strong> Weight: 1.0 kg to 350.0 kg; Height: 30.0 cm to 250.0 cm; Phone: 10 digits regex.</li>
+    <li><strong>Station Authentication:</strong> Protect <code>POST /measurements</code> using an API Key header (<code>X-API-Key: {STATION_API_KEY}</code>).</li>
+    <li><strong>Collision-Safe Barcodes:</strong> Update <code>barcode_generator.py</code> to query the DB in a loop to ensure 100% collision-free 8-char codes.</li>
+</ul>
+
+<h3>Phase 2: Raspberry Pi Autonomous Clinic Station</h3>
+<div class="callout warning">
+    <div class="callout-title">Phase 2 Objectives & Deliverables (Heart of Project)</div>
+    Build a production-grade, modular Python daemon running natively on the Raspberry Pi with hardware drivers, stability algorithms, and offline resilience.
+</div>
+
+<div class="grid-2">
+    <div>
+        <strong>Finite State Machine (session.py):</strong>
+        <ol style="font-size:8.5pt; margin-top:4px;">
+            <li><code>IDLE</code>: Waiting for patient barcode scan.</li>
+            <li><code>SCANNED</code>: Active patient locked; tare scale if empty.</li>
+            <li><code>MEASURING</code>: Continuous streaming of Weight & Height.</li>
+            <li><code>STABLE</code>: N consecutive values within tolerance delta.</li>
+            <li><code>SENT</code>: Transmitted to backend (or buffered in SQLite).</li>
+            <li><code>RESET</code>: Audio feedback (beep) & return to <code>IDLE</code>.</li>
+        </ol>
+    </div>
+    <div>
+        <strong>Resilient Offline Buffering (api_client.py):</strong>
+        <p style="font-size:8.5pt;">
+            When Wi-Fi drops, the Pi does <strong>not crash or drop data</strong>. Unsent readings are persisted in a local SQLite file (<code>buffer.db</code>). A background worker thread checks Wi-Fi connectivity and flushes the queue via exponential backoff.
+        </p>
+    </div>
+</div>
+
+<h4>Stability Check Algorithm Specification (stability.py)</h4>
+<p>
+The stability filter maintains two rolling FIFO queues of size N (default N = 5 samples, at 5 Hz = 1.0 second window). A reading is declared stable if and only if:
+</p>
+<div class="code-box">max(weight_buffer) - min(weight_buffer) <= weight_tolerance (e.g. 0.2 kg)
+AND
+max(height_buffer) - min(height_buffer) <= height_tolerance (e.g. 0.5 cm)
+AND
+average(weight_buffer) >= min_patient_weight (e.g. 5.0 kg)</div>
+
+<h4>Raspberry Pi GPIO Pinout & Wiring Table</h4>
+<table>
+    <thead>
+        <tr>
+            <th>Subsystem</th>
+            <th>Sensor Pin</th>
+            <th>Raspberry Pi Physical Pin</th>
+            <th>BCM GPIO</th>
+            <th>Electrical Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="4"><strong>Weight Sensor (HX711)</strong></td>
+            <td>VCC</td>
+            <td>Pin 2 (or Pin 4)</td>
+            <td>5V Power</td>
+            <td>Connect to 5V rail of Pi</td>
+        </tr>
+        <tr>
+            <td>GND</td>
+            <td>Pin 6 (or Pin 9)</td>
+            <td>Ground</td>
+            <td>Common ground</td>
+        </tr>
+        <tr>
+            <td>DT (Data)</td>
+            <td>Pin 29</td>
+            <td>GPIO 5</td>
+            <td>24-bit ADC serial output</td>
+        </tr>
+        <tr>
+            <td>SCK (Clock)</td>
+            <td>Pin 31</td>
+            <td>GPIO 6</td>
+            <td>Serial clock input (50Hz)</td>
+        </tr>
+        <tr>
+            <td rowspan="4"><strong>Height Sensor (HC-SR04)</strong></td>
+            <td>VCC</td>
+            <td>Pin 4</td>
+            <td>5V Power</td>
+            <td>Sensor requires 5V supply</td>
+        </tr>
+        <tr>
+            <td>GND</td>
+            <td>Pin 14 (or Pin 20)</td>
+            <td>Ground</td>
+            <td>Common ground</td>
+        </tr>
+        <tr>
+            <td>TRIG</td>
+            <td>Pin 16</td>
+            <td>GPIO 23</td>
+            <td>10us trigger pulse from Pi</td>
+        </tr>
+        <tr>
+            <td>ECHO</td>
+            <td>Pin 18</td>
+            <td>GPIO 24</td>
+            <td><strong>Must use Voltage Divider (1k / 2k ohm)</strong> to step 5V down to 3.3V</td>
+        </tr>
+        <tr>
+            <td><strong>Barcode Scanner</strong></td>
+            <td>USB Type-A</td>
+            <td>USB 3.0 / 2.0 Port</td>
+            <td>USB HID</td>
+            <td>Standard keyboard HID mode</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h3>Phase 3: React Frontend Redesign & Print System</h3>
+<div class="callout default">
+    <div class="callout-title">Phase 3 Objectives & Deliverables</div>
+    Elevate the user experience from an unstyled prototype to a clean, clinic-ready dashboard with live measurement streaming and printable patient cards.
+</div>
+<ul>
+    <li><strong>Printable Patient Card:</strong> Barcode sticker printable directly on standard thermal label printers (or standard A4) with patient name, age, phone, barcode graphic, and generation date.</li>
+    <li><strong>Real-time Station Status Card:</strong> Visual gauge displaying live station state (<code>IDLE</code>, <code>MEASURING...</code>, <code>STABLE</code>) without locking the UI.</li>
+    <li><strong>Multi-Metric Analytics Dashboard:</strong>
+        <ul>
+            <li>Weight, Height, and BMI trend line charts using Chart.js.</li>
+            <li>Color-coded clinical BMI badges:
+                <span class="badge" style="background:#bfdbfe; color:#1e40af;">Underweight (&lt; 18.5)</span>
+                <span class="badge badge-done">Normal (18.5 - 24.9)</span>
+                <span class="badge badge-partial">Overweight (25.0 - 29.9)</span>
+                <span class="badge badge-missing">Obese (&ge; 30.0)</span>
+            </li>
+            <li>Tabular historical log with date/time stamps and delta changes.</li>
+        </ul>
+    </li>
+    <li><strong>Clean Environment Variable Injection:</strong> All endpoints read dynamically from <code>REACT_APP_API_BASE_URL</code>.</li>
+</ul>
+
+<h3>Phase 4: Docker & AWS EC2 Cloud Deployment</h3>
+<ul>
+    <li><strong>Backend Container:</strong> Multi-stage Python 3.12-slim Dockerfile running Uvicorn with auto-restart.</li>
+    <li><strong>Frontend Container:</strong> Node.js multi-stage build creating static assets served by an optimized Nginx Alpine web server.</li>
+    <li><strong>Docker Compose:</strong> Single file deployment on AWS EC2 with restart policies, bridged internal networking, and health checks.</li>
+    <li><strong>Security Hardening:</strong> All secrets isolated in <code>.env</code>, with comprehensive <code>.env.example</code> and root <code>.gitignore</code> preventing credential leaks.</li>
+</ul>
+
+<h3>Phase 5: Automated Testing Suite & Documentation</h3>
+<table>
+    <thead>
+        <tr>
+            <th style="width: 25%;">Test Domain</th>
+            <th style="width: 35%;">Test Cases</th>
+            <th>Verification Tool</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>BMI Calculation</strong></td>
+            <td>Standard values, boundary values, zero/negative guards.</td>
+            <td><code>pytest tests/test_bmi.py</code></td>
+        </tr>
+        <tr>
+            <td><strong>Stability Filter</strong></td>
+            <td>Oscillating noise, sudden jumps, step-off before N threshold.</td>
+            <td><code>pytest tests/test_stability.py</code></td>
+        </tr>
+        <tr>
+            <td><strong>Offline Buffer Queue</strong></td>
+            <td>Network disconnection, local SQLite queue, automatic sync on reconnect.</td>
+            <td><code>pytest tests/test_offline_queue.py</code></td>
+        </tr>
+        <tr>
+            <td><strong>FastAPI Endpoints</strong></td>
+            <td>Patient CRUD, Barcode search, Measurement posting, Auth validation.</td>
+            <td><code>pytest tests/test_api.py</code> (TestClient)</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="callout info" style="margin-top:20px;">
+    <div class="callout-title">Ready for Execution</div>
+    With this approved execution plan, implementation begins immediately on <strong>Phase 1 (Backend & Database)</strong>, followed sequentially by <strong>Phase 2 (Raspberry Pi Station)</strong>, <strong>Phase 3 (Frontend)</strong>, <strong>Phase 4 (Docker EC2)</strong>, and <strong>Phase 5 (Testing & Documentation)</strong>.
+</div>
+
+<div class="footer-note">
+    <span>Clinic Patient Measurement System — Execution Plan</span>
+    <span>CONFIDENTIAL & PROPRIETARY</span>
+</div>
+
+</body>
+</html>

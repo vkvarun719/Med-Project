@@ -1,0 +1,511 @@
+/* frontend/src/App.css */
+:root {
+  --primary: #0284c7;
+  --primary-hover: #0369a1;
+  --secondary: #10b981;
+  --secondary-hover: #059669;
+  --bg-main: #f8fafc;
+  --card-bg: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.app-header {
+  background-color: #064e3b;
+  color: #ffffff;
+  padding: 16px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-icon {
+  font-size: 28pt;
+}
+
+.header-brand h1 {
+  margin: 0;
+  font-size: 16pt;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.brand-tagline {
+  font-size: 9pt;
+  color: #a7f3d0;
+}
+
+.header-nav {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 9.5pt;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-btn:hover, .nav-btn.active {
+  background: #ffffff;
+  color: #064e3b;
+  border-color: #ffffff;
+}
+
+/* Notification Banner */
+.notification-banner {
+  background-color: #ecfdf5;
+  border-bottom: 1px solid #a7f3d0;
+  color: #065f46;
+  padding: 10px 32px;
+  font-size: 9pt;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 14pt;
+  cursor: pointer;
+  color: #065f46;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  max-width: 1080px;
+  width: 100%;
+  margin: 24px auto;
+  padding: 0 20px;
+}
+
+/* Cards */
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+
+.card-header {
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 12px;
+}
+
+.card-header h2 {
+  margin: 0 0 4px 0;
+  font-size: 14pt;
+  color: #0f172a;
+}
+
+.card-subtitle {
+  font-size: 8.5pt;
+  color: var(--text-muted);
+}
+
+/* Forms */
+.form-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 8.5pt;
+  font-weight: 600;
+  color: #334155;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-group input, .form-group select {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 10pt;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus, .form-group select:focus {
+  border-color: var(--primary);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--primary);
+  color: #ffffff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 9.5pt;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--secondary);
+  color: #ffffff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 9pt;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: var(--secondary-hover);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-sm {
+  padding: 6px 10px;
+  font-size: 8pt;
+}
+
+/* Station Live Monitor */
+.station-card {
+  border-left: 4px solid #10b981;
+}
+
+.station-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gauge-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 14px 0;
+}
+
+.gauge-box {
+  background-color: #f1f5f9;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+  text-align: center;
+}
+
+.gauge-label {
+  font-size: 8.5pt;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.gauge-value {
+  font-size: 26pt;
+  font-weight: 800;
+  color: #0f172a;
+  margin-top: 4px;
+}
+
+.gauge-unit {
+  font-size: 13pt;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.station-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  font-size: 9pt;
+}
+
+/* Badges & Pills */
+.pill {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 8pt;
+  font-weight: 700;
+}
+
+.pill-idle { background: #e2e8f0; color: #475569; }
+.pill-scanned { background: #fef3c7; color: #92400e; }
+.pill-measuring { background: #dbeafe; color: #1e40af; }
+.pill-stable { background: #d1fae5; color: #065f46; }
+.pill-sent { background: #e0e7ff; color: #3730a3; }
+
+.badge {
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 7.5pt;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.badge-underweight { background-color: #e0f2fe; color: #0369a1; }
+.badge-normal { background-color: #d1fae5; color: #065f46; }
+.badge-overweight { background-color: #fef3c7; color: #b45309; }
+.badge-obese { background-color: #fee2e2; color: #b91c1c; }
+
+/* Patient History */
+.search-bar-row {
+  display: flex;
+  gap: 10px;
+}
+
+.search-bar-row input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 10pt;
+}
+
+.patient-meta-banner {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.patient-demographics {
+  margin: 4px 0 0 0;
+  font-size: 9pt;
+  color: #475569;
+}
+
+.latest-vitals-box {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 12px;
+  text-align: right;
+}
+
+.vitals-title {
+  font-size: 7.5pt;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.vitals-values {
+  margin-top: 4px;
+  font-size: 9.5pt;
+  font-weight: 600;
+}
+
+/* Charts & Tables */
+.chart-container-box {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px;
+}
+
+.chart-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.tab-btn {
+  background: #f1f5f9;
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 8pt;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9pt;
+}
+
+.data-table th, .data-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table th {
+  background-color: #f1f5f9;
+  font-size: 7.5pt;
+  text-transform: uppercase;
+  color: #475569;
+}
+
+/* Printable Patient Badge */
+.printable-card-wrapper {
+  background-color: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  padding: 16px;
+  border-radius: 6px;
+}
+
+.printable-badge {
+  background: #ffffff;
+  border: 2px solid #0f172a;
+  border-radius: 8px;
+  padding: 16px;
+  max-width: 320px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.badge-header h3 {
+  margin: 0;
+  font-size: 11pt;
+  color: #064e3b;
+}
+
+.badge-clinic-id {
+  font-size: 8pt;
+  color: var(--text-muted);
+}
+
+.badge-body {
+  margin: 12px 0;
+  font-size: 9pt;
+  text-align: left;
+}
+
+.badge-inline-meta {
+  display: flex;
+  gap: 8px;
+  font-size: 8pt;
+  color: #475569;
+  margin: 4px 0 10px 0;
+}
+
+.badge-barcode-visual {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.badge-barcode-visual img {
+  max-width: 220px;
+  height: auto;
+}
+
+.barcode-code-text {
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 10pt;
+  letter-spacing: 2px;
+}
+
+.badge-footer {
+  border-top: 1px dashed var(--border);
+  padding-top: 6px;
+  font-size: 7.5pt;
+  color: var(--text-muted);
+}
+
+.alert-error {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 8.5pt;
+}
+
+.app-footer {
+  text-align: center;
+  font-size: 8pt;
+  color: var(--text-muted);
+  padding: 16px;
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+
+/* Print Media Query */
+@media print {
+  body {
+    background: #ffffff;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .printable-card-wrapper {
+    border: none;
+    padding: 0;
+  }
+  .printable-badge {
+    margin: 0;
+    max-width: 100%;
+    border: 2px solid #000;
+  }
+}

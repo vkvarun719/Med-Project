@@ -1,0 +1,22 @@
+[Unit]
+Description=Clinic Patient Measurement Station Daemon
+After=network.target network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/clinic-system/automation
+Environment=PYTHONUNBUFFERED=1
+Environment=MOCK_MODE=false
+ExecStart=/home/pi/clinic-system/automation/venv/bin/python main.py
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+# Hardware access permissions for GPIO and USB devices
+SupplementaryGroups=gpio dialout input
+
+[Install]
+WantedBy=multi-user.target

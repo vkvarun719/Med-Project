@@ -1,0 +1,40 @@
+{
+  "station_id": "CLINIC-PI-01",
+  "api_base_url": "http://localhost:8000",
+  "station_api_key": "clinic-secret-pi-key-2026",
+  "offline_db_path": "buffer.db",
+  
+  "hardware": {
+    "weight_sensor": {
+      "model": "HX711",
+      "dout_pin": 5,
+      "sck_pin": 6,
+      "reference_unit": 420.0,
+      "offset": 0.0
+    },
+    "height_sensor": {
+      "model": "HC-SR04",
+      "trigger_pin": 23,
+      "echo_pin": 24,
+      "stadiometer_ceiling_cm": 220.0,
+      "offset_cm": 0.0
+    },
+    "indicators": {
+      "buzzer_pin": 18,
+      "status_led_pin": 12
+    }
+  },
+
+  "stability": {
+    "sample_count": 5,
+    "weight_tolerance_kg": 0.2,
+    "height_tolerance_cm": 0.5,
+    "min_patient_weight_kg": 5.0,
+    "sample_interval_sec": 0.2
+  },
+
+  "sync": {
+    "retry_interval_sec": 5,
+    "max_backoff_sec": 60
+  }
+}
